@@ -14,6 +14,8 @@ COPY codecasts.pub /etc/apk/keys/php-alpine.rsa.pub
 
 # add the www-data user
 RUN set -x \
+    && addgroup -g 82 -S www-data \
+    && adduser -u 82 -D -S -G www-data www-data \
     && apk --update add ca-certificates \
     && update-ca-certificates \
     && echo "@php https://php.codecasts.rocks/v3.7/php-7.2" >> /etc/apk/repositories \
