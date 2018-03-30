@@ -7,6 +7,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_NO_INTERACTION 1
 ENV COMPOSER_HOME /usr/lib/composer
 ENV COMPOSER_CACHE_DIR /var/cache/composer
+ENV PHP_INI_SCAN_DIR /etc/php7/conf.d
 
 # key from https://php.codecasts.rocks/php-alpine.rsa.pub on 2018-03-30T09:14:00+01:00
 COPY codecasts.pub /etc/apk/keys/php-alpine.rsa.pub
@@ -56,4 +57,4 @@ WORKDIR /srv/code
 
 EXPOSE 9000
 
-CMD ["PHP_INI_SCAN_DIR=/etc/php7/conf.d", "/usr/sbin/php-fpm7", "-c", "/etc/php7/php.ini", "--nodaemonize"]
+CMD ["/usr/sbin/php-fpm7", "-c", "/etc/php7/php.ini", "--nodaemonize"]
